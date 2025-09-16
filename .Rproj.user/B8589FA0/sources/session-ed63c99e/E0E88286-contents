@@ -1,7 +1,3 @@
-# ============================================================
-# 00_Config.R - Configuración base para todo el proyecto
-# ============================================================
-
 # Limpiar entorno
 rm(list = ls())
 
@@ -27,7 +23,8 @@ p_load(rio,        # Importación/exportación datos
        data.table, # Manipulación de datos
        here,       # Gestionar rutas
        boot,        # Bootstrap  
-       xtable
+       xtable,
+       haven
 )
 
 # Definir rutas 
@@ -45,3 +42,4 @@ if (!dir.exists(datasets_path)) {
 store_file <- function(filename) {
   file.path(datasets_path, filename)
 }
+

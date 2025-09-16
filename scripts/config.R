@@ -1,7 +1,3 @@
-# ============================================================
-# 00_Config.R - Configuración base para todo el proyecto
-# ============================================================
-
 # Limpiar entorno
 rm(list = ls())
 
@@ -27,10 +23,23 @@ p_load(rio,        # Importación/exportación datos
        data.table, # Manipulación de datos
        here,       # Gestionar rutas
        boot,        # Bootstrap  
-       xtable
+       xtable,
+       haven
 )
 
 # Definir rutas 
 # Identificamos la ruta del script actual
 script_path <- rstudioapi::getSourceEditorContext()$path
 script_dir  <- dirname(script_path)
+
+# Creamos carpeta stores (si no existe) en la raíz del proyecto
+datasets_path <- file.path(dirname(script_dir), "datasets")
+if (!dir.exists(datasets_path)) {
+  dir.create(datasets_path, recursive = TRUE)
+}
+
+# Función de ayuda para construir rutas hacia stores
+store_file <- function(filename) {
+  file.path(datasets_path, filename)
+}
+
